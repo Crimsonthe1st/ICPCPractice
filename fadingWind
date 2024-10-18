@@ -1,0 +1,49 @@
+import java.util.Scanner;
+import static java.lang.Math.max;
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        /*
+         * h=height in air
+         * k=baseline
+         * v=velocity of plane
+         * s=wind str
+         * */
+        Scanner scan = new Scanner(System.in);
+        int h = scan.nextInt();
+        int k = scan.nextInt();
+        int v = scan.nextInt();
+        int s = scan.nextInt();
+        int units = 0;
+
+
+        while (h > 0) {
+            v += s;
+            v -= max(1, (v / 10));
+
+            if (v >= k) {
+                h++;
+            }
+            if (v > 0 && v < k) {
+                h--;
+                if (h == 0) {
+                    v = 0;
+                }
+            }
+            if (v <= 0) {
+                h = v = 0;
+            }
+            units += v;
+            if (s > 0) {
+                s--;
+            }
+
+
+        }
+        System.out.println(units);
+
+    }
+
+}
